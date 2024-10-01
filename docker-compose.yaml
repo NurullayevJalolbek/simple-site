@@ -1,0 +1,15 @@
+services:
+  nginx:
+    image: nginx:alpine  # Use the Nginx image (alpine is a small, efficient version).
+    ports:
+      - "8000:80"  # Map port 8080 on our computer to port 80 inside the container (the web server port).
+    volumes:
+      - ./public:/var/www/html/public  # Share the 'public' folder from our computer with the container.
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Give Nginx our configuration file to know how to work.
+    depends_on:
+      - php-fpm  # Make sure PHP-FPM is running before Nginx starts.
+
+  php-fpm:
+    build: .  # Use our Dockerfile to build the PHP server.
+    volumes:
+      - ./public:/var/www/html/public  # Share the 'public' folder with the PHP container too.

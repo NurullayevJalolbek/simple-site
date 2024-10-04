@@ -27,7 +27,7 @@ services:
     image: mysql:8  # Use MySQL image
     restart: always
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: rent_app  # Create a database named 'laravel'
       MYSQL_ROOT_PASSWORD: root  # Set the root password for MySQL
